@@ -3,3 +3,5 @@ BotStarterJim.java
 *.class
 .classpath
 .project
+classes/err.txt
+classes/out.txt
