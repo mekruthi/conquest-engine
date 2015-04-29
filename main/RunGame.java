@@ -54,8 +54,8 @@ public class RunGame
 
 	String playerName1, playerName2;
 	final String gameId,
-			bot1Id, bot2Id,
-			bot1Dir, bot2Dir;
+			bot1Id, bot2Id;
+			//bot1Dir, bot2Dir;
 
 	Engine engine;
 
@@ -73,15 +73,16 @@ public class RunGame
 		this.gameId = args[0];
 		this.bot1Id = args[1];
 		this.bot2Id = args[2];
-		this.bot1Dir = args[3];
-		this.bot2Dir = args[4];
+		// not really using bot directories as they are hard coded here!
+		//this.bot1Dir = args[3];
+		//this.bot2Dir = args[4];
 		this.playerName1 = "player1";
 		this.playerName2 = "player2";		
 	}
 
 	public void printGameStatus(){
 		System.out.println("Game id: " + this.gameId + "  Bot 1: " + this.bot1Id + "  Bot 2: " + this.bot2Id);
-		System.out.println("Bot 1 dir: " + this.bot1Dir + "  Bot 2 dir: " + this.bot2Dir);
+		//System.out.println("Bot 1 dir: " + this.bot1Dir + "  Bot 2 dir: " + this.bot2Dir);
 		System.out.println("Player 1: " + this.playerName1 + "  Player 2: " + this.playerName2);
 	}
 	
@@ -101,8 +102,8 @@ public class RunGame
 		//bot1 = new IORobot("/opt/aigames/scripts/run_bot.sh aiplayer1 " + bot1Dir);
 		//bot2 = new IORobot("/opt/aigames/scripts/run_bot.sh aiplayer2 " + bot2Dir);
 		
-		bot1 = new IORobot("/home/anarayan/Scratch/java/conquest-engine/classes/run_pybot.sh aiplayer1 " + bot1Dir);
-		bot2 = new IORobot("/home/anarayan/Scratch/java/conquest-engine/classes/run_jbot.sh aiplayer2 " + bot2Dir);
+		bot1 = new IORobot("/home/anarayan/Scratch/java/conquest-engine/classes/run_pybot.sh aiplayer1 ");
+		bot2 = new IORobot("/home/anarayan/Scratch/java/conquest-engine/classes/run_jbot.sh aiplayer2 " );
 
 		startingArmies = 5;
 		player1 = new Player(playerName1, bot1, startingArmies);
@@ -482,7 +483,7 @@ public class RunGame
 		Player winner = this.engine.winningPlayer();
 		int score = this.engine.getRoundNr() - 1;
 		
-		System.out.println("Winner: " + winner.toString());
+		System.out.println("Winner: " + winner.getName());
         System.out.println("Score: " + score);
         
 		/*
