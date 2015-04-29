@@ -27,3 +27,12 @@ Then to run:
     java main.RunGame 0 0 0 "java bot.BotStarter" "java bot.BotStarter" 2>err.txt 1>out.txt
 
 change the bots according to your own bots, error log will be outputted to err.txt and out log will be outputted to out.txt
+
+---
+
+I am modifying the original code to use it as a test bed for my work.
+All original code retains the original license (Apache license)
+
+Code modifications and additional files are available under the [MIT License](http://opensource.org/licenses/MIT)
+
+
