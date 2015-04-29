@@ -1,5 +1,6 @@
 conquest_engine.jar
 BotStarterJim.java
 *.class
+classes
 .classpath
 .project

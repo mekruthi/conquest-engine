@@ -64,6 +64,7 @@ public class RunGame
 	public static void main(String args[]) throws Exception
 	{	
 		RunGame run = new RunGame(args);
+		run.printGameStatus();
 		run.go();
 	}
 	
@@ -75,9 +76,16 @@ public class RunGame
 		this.bot1Dir = args[3];
 		this.bot2Dir = args[4];
 		this.playerName1 = "player1";
-		this.playerName2 = "player2";
+		this.playerName2 = "player2";		
 	}
 
+	public void printGameStatus(){
+		System.out.println("Game id: " + this.gameId + "  Bot 1: " + this.bot1Id + "  Bot 2: " + this.bot2Id);
+		System.out.println("Bot 1 dir: " + this.bot1Dir + "  Bot 2 dir: " + this.bot2Dir);
+		System.out.println("Player 1: " + this.playerName1 + "  Player 2: " + this.playerName2);
+	}
+	
+	
 	private void go() throws IOException, InterruptedException
 	{
 		System.out.println("starting game " + gameId);
@@ -94,7 +102,7 @@ public class RunGame
 		//bot2 = new IORobot("/opt/aigames/scripts/run_bot.sh aiplayer2 " + bot2Dir);
 		
 		bot1 = new IORobot("/home/anarayan/Scratch/java/conquest-engine/classes/run_pybot.sh aiplayer1 " + bot1Dir);
-		bot2 = new IORobot("/home/anarayan/Scratch/java/conquest-engine/classes/run_bot.sh aiplayer2 " + bot2Dir);
+		bot2 = new IORobot("/home/anarayan/Scratch/java/conquest-engine/classes/run_jbot.sh aiplayer2 " + bot2Dir);
 
 		startingArmies = 5;
 		player1 = new Player(playerName1, bot1, startingArmies);
