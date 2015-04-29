@@ -53,9 +53,8 @@ public class RunGame
 	int gameIndex = 1;
 
 	String playerName1, playerName2;
-	final String gameId,
-			bot1Id, bot2Id;
-			//bot1Dir, bot2Dir;
+	final String gameId, bot1Id, bot2Id;
+	//final String bot1Dir, bot2Dir;
 
 	Engine engine;
 
@@ -64,7 +63,7 @@ public class RunGame
 	public static void main(String args[]) throws Exception
 	{	
 		RunGame run = new RunGame(args);
-		run.printGameStatus();
+		//run.printGameStatus();
 		run.go();
 	}
 	
