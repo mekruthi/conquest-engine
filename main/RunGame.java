@@ -32,6 +32,7 @@ import move.AttackTransferMove;
 import move.MoveResult;
 import move.PlaceArmiesMove;
 
+/*
 import org.bson.types.ObjectId;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
@@ -42,6 +43,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.ServerAddress;
+*/
 
 public class RunGame
 {
@@ -57,7 +59,7 @@ public class RunGame
 
 	Engine engine;
 
-	DB db;
+	//DB db;
 
 	public static void main(String args[]) throws Exception
 	{	
@@ -85,11 +87,14 @@ public class RunGame
 		IORobot bot1, bot2;
 		int startingArmies;
 
-		db = new MongoClient("localhost", 27017).getDB("test");
+		//db = new MongoClient("localhost", 27017).getDB("test");
 		
 		//setup the bots
-		bot1 = new IORobot("/opt/aigames/scripts/run_bot.sh aiplayer1 " + bot1Dir);
-		bot2 = new IORobot("/opt/aigames/scripts/run_bot.sh aiplayer2 " + bot2Dir);
+		//bot1 = new IORobot("/opt/aigames/scripts/run_bot.sh aiplayer1 " + bot1Dir);
+		//bot2 = new IORobot("/opt/aigames/scripts/run_bot.sh aiplayer2 " + bot2Dir);
+		
+		bot1 = new IORobot("/home/anarayan/Scratch/java/conquest-engine/classes/run_pybot.sh aiplayer1 " + bot1Dir);
+		bot2 = new IORobot("/home/anarayan/Scratch/java/conquest-engine/classes/run_bot.sh aiplayer2 " + bot2Dir);
 
 		startingArmies = 5;
 		player1 = new Player(playerName1, bot1, startingArmies);
@@ -468,7 +473,11 @@ public class RunGame
 
 		Player winner = this.engine.winningPlayer();
 		int score = this.engine.getRoundNr() - 1;
-
+		
+		System.out.println("Winner: " + winner.toString());
+        System.out.println("Score: " + score);
+        
+		/*
 		DBCollection coll = db.getCollection("games");
 
 		DBObject queryDoc = new BasicDBObject()
@@ -510,5 +519,6 @@ public class RunGame
 			);
 		
 		coll.findAndModify(queryDoc, updateDoc);
+		*/
 	}
 }
