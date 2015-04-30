@@ -54,7 +54,7 @@ public class RunGame
 
 	String playerName1, playerName2;
 	final String gameId, bot1Id, bot2Id;
-	//final String bot1Dir, bot2Dir;
+	final String bot1Dir, bot2Dir;
 
 	Engine engine;
 
@@ -72,16 +72,15 @@ public class RunGame
 		this.gameId = args[0];
 		this.bot1Id = args[1];
 		this.bot2Id = args[2];
-		// not really using bot directories as they are hard coded here!
-		//this.bot1Dir = args[3];
-		//this.bot2Dir = args[4];
-		this.playerName1 = "player1";
-		this.playerName2 = "player2";		
+		this.bot1Dir = args[3];
+		this.bot2Dir = args[4];
+		this.playerName1 = args[5]; //"player1"; forcing player names as input 
+		this.playerName2 = args[6]; //"player2"; forcing player names as input
 	}
 
 	public void printGameStatus(){
 		System.out.println("Game id: " + this.gameId + "  Bot 1: " + this.bot1Id + "  Bot 2: " + this.bot2Id);
-		//System.out.println("Bot 1 dir: " + this.bot1Dir + "  Bot 2 dir: " + this.bot2Dir);
+		System.out.println("Bot 1 dir: " + this.bot1Dir + "  Bot 2 dir: " + this.bot2Dir);
 		System.out.println("Player 1: " + this.playerName1 + "  Player 2: " + this.playerName2);
 	}
 	
@@ -101,8 +100,11 @@ public class RunGame
 		//bot1 = new IORobot("/opt/aigames/scripts/run_bot.sh aiplayer1 " + bot1Dir);
 		//bot2 = new IORobot("/opt/aigames/scripts/run_bot.sh aiplayer2 " + bot2Dir);
 		
-		bot1 = new IORobot("/home/anarayan/Scratch/java/conquest-engine/classes/run_pybot.sh aiplayer1 ");
-		bot2 = new IORobot("/home/anarayan/Scratch/java/conquest-engine/classes/run_jbot.sh aiplayer2 " );
+		//bot1 = new IORobot("/home/anarayan/Scratch/java/conquest-engine/classes/run_pybot.sh aiplayer1 ");
+		//bot2 = new IORobot("/home/anarayan/Scratch/java/conquest-engine/classes/run_jbot.sh aiplayer2 " );
+		
+		bot1 = new IORobot(this.bot1Dir);
+		bot2 = new IORobot(this.bot2Dir);
 
 		startingArmies = 5;
 		player1 = new Player(playerName1, bot1, startingArmies);
@@ -127,7 +129,7 @@ public class RunGame
 		this.engine.sendAllInfo();
 		
 		//play the game
-		while(this.engine.winningPlayer() == null && this.engine.getRoundNr() <= 100)
+		while(this.engine.winningPlayer() == null && this.engine.getRoundNr() <= 10)
 		{
 			bot1.addToDump("Round " + this.engine.getRoundNr() + "\n");
 			bot2.addToDump("Round " + this.engine.getRoundNr() + "\n");
@@ -145,13 +147,18 @@ public class RunGame
 	private void finish(IORobot bot1, IORobot bot2) throws InterruptedException
 	{
 		bot1.finish();
-		Thread.sleep(200);
+		Thread.sleep(500);
 
 		bot2.finish();
-		Thread.sleep(200);
+		Thread.sleep(500);
 
-		Thread.sleep(200);
+		Thread.sleep(500);
 
+		System.err.println("\n======================================================\n");
+		System.err.println("Bot 1: " + bot1.getDump());
+		System.err.println("\n======================================================\n");
+		System.err.println("Bot 2: " + bot2.getDump());
+		System.err.println("\n======================================================\n");
 		// write everything
 		// String outputFile = this.writeOutputFile(this.gameId, this.engine.winningPlayer());
 		this.saveGame(bot1, bot2);
@@ -482,7 +489,11 @@ public class RunGame
 		Player winner = this.engine.winningPlayer();
 		int score = this.engine.getRoundNr() - 1;
 		
-		System.out.println("Winner: " + winner.getName());
+		if (winner == null ) {
+			System.err.println("Winner: " + " none");
+		} else {
+			System.err.println("Winner: " + winner.getName());
+		}
         System.out.println("Score: " + score);
         
 		/*

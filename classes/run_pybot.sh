@@ -15,4 +15,4 @@
 #fi
 #fi
 
-python /home/anarayan/Scratch/python/conquest-engine/bot.py < in > out
+python /home/akshay/Workspace/conquest-engine-bot/bot.py < /dev/stdin > /dev/stdout

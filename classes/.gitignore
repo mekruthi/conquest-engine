@@ -1,6 +1,14 @@
 conquest_engine.jar
 BotStarterJim.java
 *.class
-classes
 .classpath
 .project
+classes/err.txt
+classes/out.txt
+/.gitignore
+/LICENCE
+/README.md
+/bot
+/io
+/main
+/move
