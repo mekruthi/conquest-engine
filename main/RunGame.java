@@ -129,7 +129,7 @@ public class RunGame
 		this.engine.sendAllInfo();
 		
 		//play the game
-		while(this.engine.winningPlayer() == null && this.engine.getRoundNr() <= 10)
+		while(this.engine.winningPlayer() == null && this.engine.getRoundNr() <= 100)
 		{
 			bot1.addToDump("Round " + this.engine.getRoundNr() + "\n");
 			bot2.addToDump("Round " + this.engine.getRoundNr() + "\n");
@@ -154,11 +154,11 @@ public class RunGame
 
 		Thread.sleep(500);
 
-		System.err.println("\n======================================================\n");
-		System.err.println("Bot 1: " + bot1.getDump());
-		System.err.println("\n======================================================\n");
-		System.err.println("Bot 2: " + bot2.getDump());
-		System.err.println("\n======================================================\n");
+//		System.err.println("\n======================================================\n");
+//		System.err.println("Bot 1: " + bot1.getDump());
+//		System.err.println("\n======================================================\n");
+//		System.err.println("Bot 2: " + bot2.getDump());
+//		System.err.println("\n======================================================\n");
 		// write everything
 		// String outputFile = this.writeOutputFile(this.gameId, this.engine.winningPlayer());
 		this.saveGame(bot1, bot2);
@@ -494,7 +494,10 @@ public class RunGame
 		} else {
 			System.err.println("Winner: " + winner.getName());
 		}
-        System.out.println("Score: " + score);
+		
+		String gamePlayed = this.getPlayedGame(winner, "full game");
+		
+		System.err.println(gamePlayed);
         
 		/*
 		DBCollection coll = db.getCollection("games");

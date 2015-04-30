@@ -15,4 +15,5 @@
 #fi
 #fi
 
-python /home/akshay/Workspace/conquest-engine-bot/bot.py < /dev/stdin > /dev/stdout
+#python /home/akshay/Workspace/conquest-engine-bot/bot.py < /dev/stdin > /dev/stdout
+python /home/akshay/scratch/python/warlight/src/bot.py < /dev/stdin > /dev/stdout
