@@ -8,7 +8,7 @@ classes/out.txt
 /.gitignore
 /LICENCE
 /README.md
-/bot
-/io
-/main
-/move
+/bot/
+/io/
+/main/
+/move/
